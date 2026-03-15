@@ -1,64 +1,35 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이달의 도서 추천 | Career Book Curator</title>
-    <style>
-        :root { --primary-color: #2c3e50; --accent-color: #3498db; }
-        body { font-family: 'Pretendard', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f8f9fa; }
-        header { text-align: center; padding: 40px 0; background: white; border-bottom: 4px solid var(--accent-color); border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .search-section { margin: 30px 0; text-align: center; }
-        #searchBar { width: 70%; padding: 12px; border: 1px solid #ddd; border-radius: 25px; outline: none; }
-        .book-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px; }
-        .tag { display: inline-block; background: var(--accent-color); color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8em; margin-bottom: 10px; }
-        h2 { color: var(--primary-color); margin-top: 0; }
-        .content { background: #f0f4f8; padding: 15px; border-left: 5px solid var(--accent-color); font-style: italic; }
-        footer { text-align: center; margin-top: 50px; font-size: 0.9em; color: #777; }
-    </style>
-</head>
-<body>
+<div class="book-card">
+    <span class="tag">메인 테마: 데이터 사이언스 & 산업 최적화</span>
+    <h2 style="margin-bottom: 5px;">📍 탐구 주제: 데이터의 사각지대와 시스템 오류</h2>
+    <p style="color: #777; font-size: 0.9em; margin-bottom: 20px;">관리자(본인)가 직접 분석하고 엄선한 자료 세트입니다.</p>
 
-<header>
-    <h1>🌙 이달의 도서 추천</h1>
-    <p>진로 탐구와 칼럼 작성을 위한 깊이 있는 독서 가이드</p>
-</header>
-
-<div class="search-section">
-    <input type="text" id="searchBar" onkeyup="searchFunction()" placeholder="추천 도서 내 키워드 검색 (예: 데이터, 산업공학)">
-</div>
-
-<div id="bookList">
-    <div class="book-card">
-        <span class="tag">데이터/통계/산업공학</span>
-        <h2>다크 데이터 (Dark Data)</h2>
-        <p><strong>저자:</strong> 데이비드 핸드</p>
-        <div class="content">
-            "우리가 보지 못하는 데이터가 세상의 의사결정을 어떻게 망치는가?"
+    <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+        
+        <div style="padding: 15px; border-radius: 8px; background: #f0f7ff; border-left: 5px solid #3498db;">
+            <h4 style="margin: 0 0 10px 0; color: #2980b9;">📚 이달의 추천 도서</h4>
+            <strong>다크 데이터 (데이비드 핸드)</strong>
+            <p style="font-size: 0.85em; margin: 5px 0;">"수집되지 않은 데이터가 어떻게 잘못된 의사결정을 유도하는가?" 데이터 리터러시의 기초를 다지기 좋은 책입니다.</p>
         </div>
-        <p><strong>추천 이유:</strong> 정보시스템을 설계할 때 수집된 데이터만큼 중요한 것이 '수집되지 않은 데이터'입니다. 산업공학에서 공정 최적화나 알고리즘을 짤 때 발생할 수 있는 오류를 방지하기 위한 필독서입니다.</p>
-        <p>📝 <strong>진로 활용 팁:</strong> 인공지능의 편향성이나 데이터 샘플링 오류에 관한 칼럼을 쓸 때 이 책의 '데이터 누락' 개념을 인용해 보세요.</p>
+
+        <div style="padding: 15px; border-radius: 8px; background: #fffbe6; border-left: 5px solid #f1c40f;">
+            <h4 style="margin: 0 0 10px 0; color: #856404;">📰 관련 최신 뉴스</h4>
+            <ul style="font-size: 0.85em; padding-left: 20px; margin: 0;">
+                <li>[IT] AI 알고리즘의 편향성 문제와 '다크 데이터'의 상관관계</li>
+                <li>[경제] 기업 의사결정에서 누락된 데이터가 초래한 손실 사례</li>
+            </ul>
+        </div>
+
+        <div style="padding: 15px; border-radius: 8px; background: #fdf2f2; border-left: 5px solid #e74c3c;">
+            <h4 style="margin: 0 0 10px 0; color: #c0392b;">📑 심화 탐구 논문/자료</h4>
+            <ul style="font-size: 0.85em; padding-left: 20px; margin: 0;">
+                <li>표본 선택 편향이 데이터 분석 결과에 미치는 영향에 관한 연구</li>
+                <li>산업 공정 데이터의 결측치 처리 기법 비교 분석</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 25px; padding: 15px; background: #eee; border-radius: 5px;">
+        <strong>💡 활용 가이드:</strong> 위 자료들을 엮어서 <b>"데이터 수집의 불완전성이 공정 최적화에 미치는 영향"</b>이라는 주제로 칼럼을 작성해보세요.
     </div>
 </div>
-
-<footer>
-    <p>© 2026 도서 큐레이션 프로젝트 | 관리자: 본인성함</p>
-</footer>
-
-<script>
-    function searchFunction() {
-        let input = document.getElementById('searchBar').value.toLowerCase();
-        let cards = document.getElementsByClassName('book-card');
-        
-        for (let i = 0; i < cards.length; i++) {
-            if (cards[i].innerText.toLowerCase().includes(input)) {
-                cards[i].style.display = "";
-            } else {
-                cards[i].style.display = "none";
-            }
-        }
-    }
-</script>
-
-</body>
-</html>
