@@ -1,35 +1,73 @@
-<div class="book-card">
-    <span class="tag">메인 테마: 데이터 사이언스 & 산업 최적화</span>
-    <h2 style="margin-bottom: 5px;">📍 탐구 주제: 데이터의 사각지대와 시스템 오류</h2>
-    <p style="color: #777; font-size: 0.9em; margin-bottom: 20px;">관리자(본인)가 직접 분석하고 엄선한 자료 세트입니다.</p>
-
-    <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>진로 탐구 통합 시스템</title>
+    <style>
+        :root { --main-bg: #f4f7f6; --point-color: #2c3e50; --btn-color: #3498db; }
+        body { font-family: 'Pretendard', sans-serif; margin: 0; background: var(--main-bg); color: #333; line-height: 1.6; }
         
-        <div style="padding: 15px; border-radius: 8px; background: #f0f7ff; border-left: 5px solid #3498db;">
-            <h4 style="margin: 0 0 10px 0; color: #2980b9;">📚 이달의 추천 도서</h4>
-            <strong>다크 데이터 (데이비드 핸드)</strong>
-            <p style="font-size: 0.85em; margin: 5px 0;">"수집되지 않은 데이터가 어떻게 잘못된 의사결정을 유도하는가?" 데이터 리터러시의 기초를 다지기 좋은 책입니다.</p>
-        </div>
+        /* 헤더 & 네비게이션 */
+        header { background: var(--point-color); color: white; padding: 2rem; text-align: center; }
+        nav { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .nav-btn { background: var(--btn-color); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .nav-btn:hover { background: #2980b9; transform: translateY(-2px); }
 
-        <div style="padding: 15px; border-radius: 8px; background: #fffbe6; border-left: 5px solid #f1c40f;">
-            <h4 style="margin: 0 0 10px 0; color: #856404;">📰 관련 최신 뉴스</h4>
-            <ul style="font-size: 0.85em; padding-left: 20px; margin: 0;">
-                <li>[IT] AI 알고리즘의 편향성 문제와 '다크 데이터'의 상관관계</li>
-                <li>[경제] 기업 의사결정에서 누락된 데이터가 초래한 손실 사례</li>
-            </ul>
-        </div>
+        /* 논문 검색 섹션 */
+        .search-container { max-width: 900px; margin: 30px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .search-title { font-weight: bold; color: #e74c3c; margin-bottom: 10px; display: block; }
+        .academic-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .academic-links a { display: block; padding: 10px; background: #eee; text-align: center; border-radius: 5px; color: #444; text-decoration: none; font-size: 0.9em; }
 
-        <div style="padding: 15px; border-radius: 8px; background: #fdf2f2; border-left: 5px solid #e74c3c;">
-            <h4 style="margin: 0 0 10px 0; color: #c0392b;">📑 심화 탐구 논문/자료</h4>
-            <ul style="font-size: 0.85em; padding-left: 20px; margin: 0;">
-                <li>표본 선택 편향이 데이터 분석 결과에 미치는 영향에 관한 연구</li>
-                <li>산업 공정 데이터의 결측치 처리 기법 비교 분석</li>
-            </ul>
-        </div>
+        /* 메인 콘텐츠 */
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .section-title { border-left: 5px solid var(--point-color); padding-left: 10px; margin: 40px 0 20px; }
+        
+        /* 책 추천 카드 */
+        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .card h3 { margin-top: 0; color: var(--btn-color); }
+    </style>
+</head>
+<body>
 
+<header>
+    <h1>🚀 진로 탐구 리소스 포털</h1>
+    <p>본인만의 학술 자료 아카이브 및 학우용 큐레이션</p>
+    
+    <nav>
+        <a href="#book-section" class="nav-btn">📖 도서 추천</a>
+        <a href="#humanities" class="nav-btn">🏛️ 인문 도서(예정)</a>
+        <a href="#science" class="nav-btn">🧪 과학 도서(예정)</a>
+        <a href="#news" class="nav-btn">📰 최신 뉴스</a>
+    </nav>
+</header>
+
+<div class="container">
+    <section class="search-container">
+        <span class="search-title">🔍 학술 논문 및 전문 자료 찾기</span>
+        <div class="academic-links">
+            <a href="https://www.riss.kr" target="_blank">RISS (학술연구정보)</a>
+            <a href="https://dbpia.co.kr" target="_blank">DBpia (누리미디어)</a>
+            <a href="https://scholar.google.co.kr" target="_blank">Google Scholar</a>
+            <a href="https://scienceon.kisti.re.kr" target="_blank">ScienceON</a>
+        </div>
+    </section>
+
+    <h2 id="book-section" class="section-title">📚 추천 도서 아카이브</h2>
+    <div class="card">
+        <h3>다크 데이터 (데이비드 핸드)</h3>
+        <p><strong>[산업공학/데이터]</strong> 수집되지 않은 정보가 의사결정에 미치는 위험성을 다룹니다.</p>
+        <a href="https://search.shopping.naver.com/book/search?query=다크데이터" target="_blank" style="font-size: 0.8em; color: var(--btn-color);">책 상세 정보 보기 →</a>
     </div>
 
-    <div style="margin-top: 25px; padding: 15px; background: #eee; border-radius: 5px;">
-        <strong>💡 활용 가이드:</strong> 위 자료들을 엮어서 <b>"데이터 수집의 불완전성이 공정 최적화에 미치는 영향"</b>이라는 주제로 칼럼을 작성해보세요.
-    </div>
+    <h2 id="humanities" class="section-title" style="color: #999;">🏛️ 인문/사회 추천 (업데이트 예정)</h2>
+    <h2 id="science" class="section-title" style="color: #999;">🧪 자연/공학 추천 (업데이트 예정)</h2>
 </div>
+
+<footer>
+    <p style="text-align: center; color: #888; margin: 50px 0;">© 2026 진로 탐구 아카이브 | 모든 자료는 개인 학습 및 공유 목적으로 제작되었습니다.</p>
+</footer>
+
+</body>
+</html>
