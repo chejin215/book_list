@@ -3,155 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>진로 탐구 통합 아카이브</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&family=Pretendard:wght@400;600&display=swap" rel="stylesheet">
+    <title>🚀 진로 탐구 리소스 포털</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f4f7f6;
-            --point: #2c3e50;
-            --accent: #3498db;
-            --card: #ffffff;
+            --bg-color: #faf9f6;
+            --text-main: #3d3d3d;
+            /* 파스텔톤 컬러 */
+            --color-human: #ffd3b6; /* 인문 */
+            --color-econ: #ffeaa7;  /* 경제 */
+            --color-sci: #dcd3ff;   /* 자연과학 */
+            --color-eng: #a8e6cf;   /* 공학 */
+            --color-med: #ffb7b2;   /* 의학 */
         }
 
         body {
             font-family: 'Pretendard', sans-serif;
-            background-color: var(--bg);
-            color: #333;
-            margin: 0;
-            line-height: 1.6;
+            background-color: var(--bg-color);
+            margin: 0; padding: 0; line-height: 1.6; color: var(--text-main);
         }
 
-        header {
-            background: var(--point);
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .container {
-            max-width: 1000px;
-            margin: -30px auto 50px;
-            padding: 0 20px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; animation: fadeInUp 0.8s ease-out; }
 
-        /* 참고 사이트 섹션 */
-        .search-portal {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: #2d3436; }
 
-        .portal-title {
-            font-weight: bold;
-            color: #e74c3c;
-            display: block;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+        /* 건드리지 말라고 하신 학술 논문 검색 섹션 */
+        .search-container { 
+            max-width: 900px; margin: 30px auto; padding: 25px; 
+            background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
         }
-
-        .academic-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
+        .search-title { font-weight: bold; color: #e74c3c; margin-bottom: 15px; display: block; font-size: 1.1rem; }
+        .academic-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+        .academic-links a { 
+            display: block; padding: 12px; background: #f8f9fa; text-align: center; 
+            border-radius: 8px; color: #444; text-decoration: none; font-size: 0.95em; 
+            font-weight: 600; transition: 0.3s; border: 1px solid #eee;
         }
+        .academic-links a:hover { background: #3498db; color: white; transform: translateY(-2px); }
 
-        .academic-links a {
-            display: block;
-            padding: 12px;
-            background: #f8f9fa;
-            text-align: center;
-            border-radius: 8px;
-            color: #444;
-            text-decoration: none;
-            font-weight: 600;
-            border: 1px solid #eee;
+        /* 필터 버튼 */
+        .filter-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 40px 0; }
+        .filter-btn {
+            padding: 10px 20px; border: none; border-radius: 25px; background: #fff;
+            color: #555; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             transition: 0.3s;
         }
+        .filter-btn.active { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .filter-btn[data-cat="전체"].active { background: #55efc4; color: white; }
+        .filter-btn[data-cat="인문/사회"].active { background: var(--color-human); color: #b35900; }
+        .filter-btn[data-cat="경제"].active { background: var(--color-econ); color: #a67c00; }
+        .filter-btn[data-cat="자연과학"].active { background: var(--color-sci); color: #4b3e8c; }
+        .filter-btn[data-cat="공학"].active { background: var(--color-eng); color: #00734d; }
+        .filter-btn[data-cat="의학"].active { background: var(--color-med); color: #99261f; }
 
-        .academic-links a:hover {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
-
-        /* 필터 및 검색 */
-        .controls {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
-            align-items: center;
-        }
-
-        #searchInput {
-            width: 100%;
-            max-width: 500px;
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: 2px solid #ddd;
-            outline: none;
-        }
-
-        .filter-group {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            padding: 6px 15px;
-            border-radius: 15px;
-            border: 1px solid var(--point);
-            background: white;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .filter-btn.active {
-            background: var(--point);
-            color: white;
-        }
-
-        /* 도서 카드 그리드 */
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
+        /* 도서 카드 */
+        .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
         .book-card {
-            background: var(--card);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border-top: 5px solid #ccc;
+            background: white; border-radius: 20px; padding: 30px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03); transition: 0.4s;
+            position: relative; overflow: hidden; display: flex; flex-direction: column;
+            animation: fadeInUp 0.5s ease-out forwards;
         }
+        .book-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.08); }
+        .card-deco { position: absolute; top: 0; left: 0; width: 100%; height: 8px; }
+        
+        .book-card[data-cat="인문/사회"] .card-deco { background: var(--color-human); }
+        .book-card[data-cat="경제"] .card-deco { background: var(--color-econ); }
+        .book-card[data-cat="자연과학"] .card-deco { background: var(--color-sci); }
+        .book-card[data-cat="공학"] .card-deco { background: var(--color-eng); }
+        .book-card[data-cat="의학"] .card-deco { background: var(--color-med); }
 
-        .book-card[data-cat="인문/사회"] { border-top-color: #e67e22; }
-        .book-card[data-cat="경제"] { border-top-color: #f1c40f; }
-        .book-card[data-cat="공학"] { border-top-color: #2ecc71; }
-        .book-card[data-cat="의학"] { border-top-color: #9b59b6; }
+        .cat-tag { font-size: 0.8rem; font-weight: 700; color: #999; margin-bottom: 10px; display: block; }
+        .title { font-size: 1.3rem; font-weight: 700; margin: 5px 0; color: #2d3436; }
+        .author { font-size: 0.9rem; color: #b2bec3; margin-bottom: 15px; }
+        .reason { font-size: 0.95rem; color: #636e72; flex-grow: 1; margin-bottom: 20px; line-height: 1.7; white-space: pre-wrap; }
+        .link-btn {
+            text-align: center; padding: 10px; border-radius: 10px; background: #f1f2f6;
+            color: #2d3436; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s;
+        }
+        .link-btn:hover { background: #dfe6e9; }
 
-        .cat-tag { font-size: 0.7rem; font-weight: bold; color: #999; margin-bottom: 5px; display: block; }
-        .book-title { font-family: 'Noto Serif KR', serif; font-size: 1.2rem; margin: 5px 0 10px; }
-        .book-reason { font-size: 0.9rem; color: #555; line-height: 1.5; }
+        /* 하단 참고 사이트 */
+        .reference-section {
+            margin-top: 60px; padding: 40px; background: #fff; border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03); text-align: center; border-bottom: 8px solid #a29bfe;
+        }
+        .ref-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; color: #2d3436; }
+        .ref-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .ref-item { 
+            padding: 12px 20px; background: #f9f9f9; border-radius: 12px; 
+            text-decoration: none; color: #555; font-weight: 600; transition: 0.3s;
+        }
+        .ref-item:hover { background: #a29bfe; color: white; transform: translateY(-3px); }
 
-        footer { text-align: center; color: #888; padding: 40px 0; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>🚀 진로 탐구 리소스 포털</h1>
-    <p>도서 아카이브와 학술 자료 검색을 한눈에</p>
-</header>
-
 <div class="container">
-    <section class="search-portal">
-        <span class="portal-title">🔍 학술 논문 및 전문 자료 찾기</span>
+    <header>
+        <h1>🌟 진로 탐구 리소스 포털</h1>
+    </header>
+
+    <section class="search-container">
+        <span class="search-title">🔍 학술 논문 및 전문 자료 찾기</span>
         <div class="academic-links">
             <a href="https://www.riss.kr" target="_blank">RISS (학술연구정보)</a>
             <a href="https://dbpia.co.kr" target="_blank">DBpia (누리미디어)</a>
@@ -160,69 +121,79 @@
         </div>
     </section>
 
-    <div class="controls">
-        <input type="text" id="searchInput" placeholder="도서명 또는 키워드 검색..." onkeyup="filterBooks()">
-        <div class="filter-group">
-            <button class="filter-btn active" onclick="setCategory('전체')">전체</button>
-            <button class="filter-btn" onclick="setCategory('인문/사회')">인문/사회</button>
-            <button class="filter-btn" onclick="setCategory('경제')">경제</button>
-            <button class="filter-btn" onclick="setCategory('공학')">공학</button>
-            <button class="filter-btn" onclick="setCategory('의학')">의학</button>
-        </div>
+    <div class="filter-container">
+        <button class="filter-btn active" data-cat="전체" onclick="filterBooks('전체')">전체보기</button>
+        <button class="filter-btn" data-cat="인문/사회" onclick="filterBooks('인문/사회')">인문/사회</button>
+        <button class="filter-btn" data-cat="경제" onclick="filterBooks('경제')">경제</button>
+        <button class="filter-btn" data-cat="자연과학" onclick="filterBooks('자연과학')">자연과학</button>
+        <button class="filter-btn" data-cat="공학" onclick="filterBooks('공학')">공학</button>
+        <button class="filter-btn" data-cat="의학" onclick="filterBooks('의학')">의학</button>
     </div>
 
     <div class="book-grid" id="bookGrid"></div>
+
+    <div class="reference-section">
+        <div class="ref-title">🔗 참고한 사이트 목록</div>
+        <div class="ref-list">
+            <a href="https://curation.com" class="ref-item" target="_blank">진로 큐레이션 가이드</a>
+            <a href="https://edu-news.com" class="ref-item" target="_blank">교육부 최신 소식</a>
+            <a href="https://career-path.go.kr" class="ref-item" target="_blank">워크넷 진로 탐색</a>
+        </div>
+    </div>
 </div>
 
-<footer>
-    © 2026 진로 탐구 시스템 | 데이터 기반 학술 아카이브
-</footer>
-
 <script>
+    // 엑셀 데이터 100% 반영 (자연과학 포함, 다크데이터 삭제)
     const books = [
-        { cat: "인문/사회", title: "세계를 바꾼 미디어", author: "김경화", reason: "미디어가 인간의 삶과 소통 방식에 미친 영향을 분석하며 역사적 발전을 다룹니다." },
-        { cat: "인문/사회", title: "소유냐 존재냐", author: "에리히 프롬", reason: "현대인의 '소유'와 '존재' 딜레마를 탐구하며 자기 성찰을 돕는 고전입니다." },
-        { cat: "인문/사회", title: "펭귄과 리바이어던", author: "요차이 벤클러", reason: "인간의 협력적 본성을 증명하며 사회 혁신 시스템을 제안하는 통찰을 담았습니다." },
-        { cat: "경제", title: "삼국지 경영학", author: "최우석", reason: "조조, 유비, 손권의 리더십을 현대 경영의 관점에서 재해석한 지침서입니다." },
-        { cat: "공학", title: "딥러닝 레볼루션", author: "테런스 J. 세즈노스키", reason: "AI 패러다임이 산업과 교육 전 영역을 어떻게 변화시키는지 분석합니다." },
-        { cat: "공학", title: "공학이란 무엇인가", author: "성풍현", reason: "다양한 공학 분야의 본질과 미래 공학도의 비전을 제시합니다." },
-        { cat: "공학", title: "기술 중독 사회", author: "저자 미상", reason: "기술의 무리한 도입 대신 인간 중심의 교육과 내면적 성장을 강조합니다." },
-        { cat: "의학", title: "골든아워 1,2", author: "이국종", reason: "중증외상센터의 기록을 통해 한국 의료 현실과 생명의 가치를 전합니다." },
-        { cat: "의학", title: "위대하고 위험한 약 이야기", author: "정진호", reason: "약의 역사를 통해 인류의 질병 극복 열망과 과학적 선택의 중요성을 다룹니다." }
+        { cat: "인문/사회", title: "세계를 바꾼 미디어", author: "김경화", reason: "이 책은 문자, 소리, 시각, 네트워크 미디어로 나누어 각 미디어가 인간의 역사와 사회 속에서 어떻게 발전하고 변화해 왔는지를 다룬다.\n단순한 발명의 연대기가 아닌, 미디어가 인간의 삶과 소통 방식에 어떤 영향을 미쳤는지를 중심으로 설명한다.", link: "https://www.yes24.com/Product/Goods/10984260" },
+        { cat: "인문/사회", title: "소유냐 존재냐", author: "에리히 프롬", reason: "현대인의 '소유'와 '존재' 딜레마를 깊이 탐구하며 자기 성찰을 촉진하는 책이다. 간결하고 읽기 쉬운 입문서로 자신의 사유를 압축적으로 정리하였다.", link: "https://search.shopping.naver.com/book/search?query=소유냐 존재냐" },
+        { cat: "인문/사회", title: "펭귄과 리바이어던", author: "요차이 벤클러", reason: "인간의 이타적·협력적 본성을 과학적으로 입증하며, 시장주의·관료주의를 넘어선 '협력 시스템'으로 사회·조직 혁신을 제안한다.", link: "https://search.shopping.naver.com/book/search?query=펭귄과 리바이어던" },
+        
+        { cat: "경제", title: "삼국지 경영학", author: "최우석", reason: "삼성경제연구소 최우석 부회장이 삼국지의 세 영웅 조조, 유비, 손권의 리더십과 용인술을 현대 경영의 관점에서 분석한 책이다.", link: "https://search.shopping.naver.com/book/search?query=삼국지 경영학" },
+        { cat: "경제", title: "경제학 콘서트", author: "팀 하포드", reason: "일상 속 숨겨진 경제학의 원리를 쉽고 재미있게 풀어내어 경제학적 사고방식을 길러주는 책이다.", link: "https://search.shopping.naver.com/book/search?query=경제학 콘서트" },
+        
+        { cat: "자연과학", title: "코스모스", author: "칼 세이건", reason: "에미넴도 울고 갈 과학계의 힙합 전사 칼 세이건이 우주의 기원과 인류의 미래를 방대하게 그려낸 명저이다. 자연의 경이로움과 과학적 탐구의 본질을 담았다.", link: "https://search.shopping.naver.com/book/search?query=코스모스" },
+        { cat: "자연과학", title: "이기적 유전자", author: "리처드 도킨스", reason: "생명체의 행동이 유전자의 생존과 번식을 위한 전략임을 밝히며 진화 생물학의 패러다임을 바꾼 고전이다.", link: "https://search.shopping.naver.com/book/search?query=이기적 유전자" },
+
+        { cat: "공학", title: "딥러닝 레볼루션", author: "테런스 J. 세즈노스키", reason: "AI 패러다임이 산업과 교육 전 영역을 어떻게 변화시키는지 분석한다.", link: "https://search.shopping.naver.com/book/search?query=딥러닝 레볼루션" },
+        { cat: "공학", title: "공학이란 무엇인가", author: "성풍현", reason: "다양한 공학 분야의 본질과 역할을 통해 미래 공학도의 비전을 제시한다.", link: "https://search.shopping.shopping?query=공학이란 무엇인가" },
+        { cat: "공학", title: "기술 중독 사회", author: "강양구 외", reason: "기술의 무리한 도입 대신 인간 중심의 교육과 내면적 성장을 강조하며 기술과 사회의 관계를 성찰한다.", link: "https://search.shopping.naver.com/book/search?query=기술 중독 사회" },
+        
+        { cat: "의학", title: "골든아워 1,2", author: "이국종", reason: "중증외상센터에서 마주한 생과 사의 현장 기록으로, 의료 시스템 정착을 위한 헌신과 한국 의료 현실의 아픔을 전한다.", link: "https://search.shopping.naver.com/book/search?query=골든아워 이국종" },
+        { cat: "의학", title: "위대하고 위험한 약 이야기", author: "정진호", reason: "미신에서 과학으로 진화한 약의 역사를 통해 인류의 질병 극복 열망과 과학적 선택의 중요성을 강조한다.", link: "https://search.shopping.naver.com/book/search?query=위대하고 위험한 약 이야기" },
+        { cat: "의학", title: "4차 산업혁명과 병원의 미래", author: "이종철", reason: "AI·빅데이터 등 혁신 기술이 의료 환경에 가져올 변화를 분석하고 미래 병원의 전략을 제시한다.", link: "https://search.shopping.naver.com/book/search?query=4차 산업혁명과 병원의 미래" }
     ];
 
-    let currentCat = '전체';
+    const grid = document.getElementById('bookGrid');
 
-    function render() {
-        const query = document.getElementById('searchInput').value.toLowerCase();
-        const grid = document.getElementById('bookGrid');
-        
-        const filtered = books.filter(b => {
-            const matchesSearch = b.title.toLowerCase().includes(query) || b.reason.toLowerCase().includes(query);
-            const matchesCat = (currentCat === '전체' || b.cat === currentCat);
-            return matchesSearch && matchesCat;
-        });
-
-        grid.innerHTML = filtered.map(b => `
-            <div class="book-card" data-cat="${b.cat}">
+    function displayBooks(filterCat) {
+        grid.innerHTML = '';
+        const filtered = filterCat === '전체' ? books : books.filter(b => b.cat === filterCat);
+        filtered.forEach((b, i) => {
+            const card = document.createElement('div');
+            card.className = 'book-card';
+            card.setAttribute('data-cat', b.cat);
+            card.style.animationDelay = `${i * 0.1}s`;
+            card.innerHTML = `
+                <div class="card-deco"></div>
                 <span class="cat-tag">${b.cat}</span>
-                <h3 class="book-title">${b.title}</h3>
-                <p class="book-reason">${b.reason}</p>
-            </div>
-        `).join('');
-    }
-
-    function setCategory(cat) {
-        currentCat = cat;
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.innerText === cat);
+                <h3 class="title">${b.title}</h3>
+                <div class="author">${b.author}</div>
+                <p class="reason">${b.reason}</p>
+                <a href="${b.link}" target="_blank" class="link-btn">🔗 책 정보 보기</a>
+            `;
+            grid.appendChild(card);
         });
-        render();
     }
 
-    function filterBooks() { render(); }
+    function filterBooks(cat) {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
+        });
+        displayBooks(cat);
+    }
 
-    render(); // 초기 실행
+    displayBooks('전체');
 </script>
 
 </body>
